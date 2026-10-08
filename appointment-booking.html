@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Book appointment – CarePoint</title>
+  </head>
+  <body>
+    <div class="shell" id="shell">
+      <ol class="steps" aria-label="Booking progress">
+        <li class="done">✔ Step 1: Department</li>
+        <li class="done">✔ Step 2: Specialist</li>
+        <li class="cur" aria-current="step">Step 3: Date &amp; time</li>
+        <li>Step 4: Confirmation</li>
+      </ol>
+      <div id="ok" class="banner ok" role="status" hidden>
+        ✔
+        <div>
+          <strong>Appointment confirmed.</strong>
+          <span id="okt"></span> Reference #BK-00412.
+        </div>
+      </div>
+      <div class="grid g2">
+        <div>
+          <section class="card">
+            <h2>Dr. Marcus Vance, MD FACC</h2>
+            <p class="muted">
+              Department of Cardiology &amp; Heart Health · ★ 4.9 (184 reviews)
+              <span class="chip ok">Next available today</span>
+            </p>
+            <a class="btn sec sm" href="#">Change doctor</a>
+          </section>
+          <section class="card" aria-labelledby="cd">
+            <h2 id="cd">Select appointment date</h2>
+            <p class="muted">
+              Times shown in Eastern Standard Time (EST) · May 2025
+            </p>
+            <div class="cal" id="cal" role="group" aria-label="May 2025"></div>
+            <p class="help">
+              ● Available appointments · Greyed out: unavailable / weekend
+            </p>
+          </section>
+          <section class="card" aria-labelledby="ts">
+            <h2 id="ts">Available time slots</h2>
+            <p class="muted" id="sd">Select a date to see slots.</p>
+            <div
+              id="slots"
+              class="slots"
+              role="group"
+              aria-label="Time slots"
+            ></div>
+          </section>
+          <section class="card">
+            <h2>
+              <label for="sym" style="margin: 0"
+                >Reason for visit &amp; symptoms</label
+              >
+            </h2>
+            <p class="help" id="sh">
+              Optional. Describe symptoms, current medications, or pre-existing
+              clinical notes for Dr. Vance.
+            </p>
+            <textarea
+              id="sym"
+              rows="4"
+              maxlength="500"
+              aria-describedby="sh cnt"
+              placeholder="e.g. Mild shortness of breath during morning walking, followed up from routine ECG check 2 weeks prior…"
+            ></textarea>
+            <p class="help" id="cnt">
+              🔒 Protected Health Information (PHI) · 0 / 500
+            </p>
+          </section>
+        </div>
+        <aside class="card" aria-labelledby="bs" style="align-self: start">
+          <h2 id="bs">Booking summary</h2>
+          <p>
+            <strong>Department</strong><br />Cardiology &amp; Heart Health,
+            North Pavilion · Wing 3B
+          </p>
+          <p><strong>Specialist</strong><br />Dr. Marcus Vance, MD</p>
+          <p>
+            <strong>Date &amp; time</strong><br /><span id="when"
+              >No time slot selected</span
+            >
+          </p>
+          <p>
+            <strong>Location</strong><br />CarePoint Medical Center, 742
+            Evergreen Plaza, Suite 410
+          </p>
+          <table>
+            <tr>
+              <td>Specialist consultation fee</td>
+              <td>Rs. 120.00</td>
+            </tr>
+            <tr>
+              <td>Insurance estimated copay</td>
+              <td>− Rs. 95.00</td>
+            </tr>
+            <tr>
+              <th scope="row" style="color: inherit">Patient responsibility</th>
+              <td><strong>Rs. 25.00</strong></td>
+            </tr>
+          </table>
+          <p class="err" id="msg" role="alert">
+            ⚠ Please select your preferred consultation time slot.
+          </p>
+          <button class="btn full" id="go" disabled>
+            Confirm &amp; book appointment
+          </button>
+          <p class="help">Free cancellation up to 24h prior to visit.</p>
+        </aside>
+      </div>
+    </div>
+    <script src="js/layout.js"></script>
+    <script>
+      let day = null,
+        time = null;
+      const cal = document.getElementById("cal");
+      let h =
+        ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+          .map((d) => '<span class="muted">' + d + "</span>")
+          .join("") + "<span></span><span></span><span></span><span></span>";
+      for (let d = 1; d <= 31; d++) {
+        const w = (d + 3) % 7,
+          off = w === 0 || w === 6 || d < 5;
+        h +=
+          '<button type="button" data-d="' +
+          d +
+          '" aria-pressed="false" ' +
+          (off
+            ? 'disabled aria-label="May ' + d + ', unavailable"'
+            : 'aria-label="May ' + d + ', available"') +
+          ">" +
+          d +
+          "</button>";
+      }
+      cal.innerHTML = h;
+      const T = [
+        ["Morning", "9:00 AM", "9:30 AM", "10:15 AM"],
+        ["Afternoon", "1:30 PM", "2:15 PM", "3:45 PM"],
+      ];
+      function upd() {
+        const ok = day && time;
+        document.getElementById("go").disabled = !ok;
+        document.getElementById("msg").hidden = !!ok;
+        document.getElementById("when").textContent = ok
+          ? "May " + day + ", 2025 at " + time
+          : day
+            ? "May " + day + ", 2025 – no time slot selected"
+            : "No time slot selected";
+      }
+      cal.onclick = (e) => {
+        const b = e.target.closest("button[data-d]");
+        if (!b || b.disabled) return;
+        cal
+          .querySelectorAll("button")
+          .forEach((x) => x.setAttribute("aria-pressed", "false"));
+        b.setAttribute("aria-pressed", "true");
+        day = b.dataset.d;
+        time = null;
+        document.getElementById("sd").textContent =
+          "Available times for May " + day + ", 2025 · 30 min consultation";
+        document.getElementById("slots").innerHTML = T.map(
+          (g) =>
+            '<p class="muted" style="width:100%;margin:0">' +
+            g[0] +
+            " slots</p>" +
+            g
+              .slice(1)
+              .map(
+                (t) =>
+                  '<button type="button" class="slot" aria-pressed="false">' +
+                  t +
+                  "</button>",
+              )
+              .join(""),
+        ).join("");
+        upd();
+      };
+      document.getElementById("slots").onclick = (e) => {
+        const b = e.target.closest(".slot");
+        if (!b) return;
+        document
+          .querySelectorAll(".slot")
+          .forEach((x) => x.setAttribute("aria-pressed", "false"));
+        b.setAttribute("aria-pressed", "true");
+        time = b.textContent;
+        upd();
+      };
+      document.getElementById("sym").oninput = (e) =>
+        (document.getElementById("cnt").textContent =
+          "🔒 Protected Health Information (PHI) · " +
+          e.target.value.length +
+          " / 500");
+      document.getElementById("go").onclick = () => {
+        const o = document.getElementById("ok");
+        document.getElementById("okt").textContent =
+          "Dr. Vance, May " + day + " at " + time + ".";
+        o.hidden = false;
+        o.scrollIntoView();
+        o.tabIndex = -1;
+        o.focus();
+      };
+    </script>
+  </body>
+</html>

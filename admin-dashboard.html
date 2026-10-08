@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Administrator Dashboard – CarePoint</title>
+  </head>
+  <body>
+    <div class="shell" id="shell">
+      <div
+        class="card"
+        style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center"
+      >
+        <span class="chip ok">● Node ops: Primary Cluster US-East</span
+        ><span class="chip ok">Server uptime: 99.98%</span
+        ><span class="chip ok">Database sync: LIVE (3ms)</span
+        ><span class="chip ok">Active hospital wards: 8/8 operational</span>
+        <span style="margin-left: auto"
+          ><button class="btn sec sm">Run diagnostics</button>
+          <button class="btn sm">Grant provision</button></span
+        >
+      </div>
+      <h1>Administrator dashboard</h1>
+      <div class="grid g4">
+        <div class="card">
+          <p class="muted">Total registered patients</p>
+          <p class="big">14,280</p>
+          <span class="chip ok">▲ +5.2% this month</span>
+        </div>
+        <div class="card">
+          <p class="muted">Today's appointments</p>
+          <p class="big">142</p>
+          <p class="muted">18 in progress · 94 completed (66%)</p>
+        </div>
+        <div class="card">
+          <p class="muted">Monthly revenue</p>
+          <p class="big">Rs. 384,520</p>
+          <span class="chip ok">▲ +12.4%</span>
+          <span class="muted">Target: $400k</span>
+        </div>
+        <div class="card">
+          <p class="muted">Active clinical staff</p>
+          <p class="big">86</p>
+          <p class="muted">Doctors &amp; nurses · 100% floor cover</p>
+        </div>
+      </div>
+      <div class="grid g2">
+        <section class="card" aria-labelledby="wv">
+          <h2 id="wv">Weekly appointment volume</h2>
+          <div
+            class="bars"
+            role="img"
+            aria-label="Bar chart of weekly appointments, Monday to Sunday. Peak on Thursday."
+          >
+            <div style="height: 60%">Mon</div>
+            <div style="height: 75%">Tue</div>
+            <div style="height: 85%">Wed</div>
+            <div style="height: 100%">Thu</div>
+            <div style="height: 80%">Fri</div>
+            <div style="height: 45%">Sat</div>
+            <div style="height: 30%">Sun</div>
+          </div>
+          <p class="muted">
+            Highest triage load observed on Thursday (+12% vs avg).
+          </p>
+        </section>
+        <section class="card" aria-labelledby="br">
+          <h2 id="br">
+            Billing recovery trend <span class="chip ok">94.2% rate</span>
+          </h2>
+          <p>Weeks W1→W6: 40% → 52% → 68% → 62% → 85% → 94%.</p>
+          <p class="muted">
+            ✔ Claims denial reduced by 3.8% · Avg settlement: 4.2d
+          </p>
+        </section>
+      </div>
+      <div class="grid g2">
+        <section class="card" aria-labelledby="st">
+          <h2 id="st">Staff &amp; user management</h2>
+          <p>
+            <label class="sr" for="sq">Search staff</label
+            ><input
+              id="sq"
+              type="search"
+              placeholder="Search by name, staff ID, license, or keyword…"
+            />
+          </p>
+          <div class="tw">
+            <table>
+              <caption class="sr">
+                Staff accounts
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Name &amp; identity</th>
+                  <th scope="col">Role</th>
+                  <th scope="col">Department</th>
+                  <th scope="col">Last active</th>
+                  <th scope="col">Access level</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody id="tb"></tbody>
+            </table>
+          </div>
+          <p class="muted">Showing 1 to 5 of 342 credentialed accounts</p>
+          <nav aria-label="Pagination">
+            <button class="btn sec sm" aria-current="page">1</button>
+            <button class="btn sec sm">2</button>
+            <button class="btn sec sm">3</button>
+            <button class="btn sec sm">Next</button>
+          </nav>
+        </section>
+        <section class="card" aria-labelledby="au">
+          <h2 id="au">Security audit log</h2>
+          <p class="muted">
+            Real-time immutable trail for HIPAA Title II compliance.
+          </p>
+          <ul class="list" aria-live="polite">
+            <li>
+              <span
+                ><strong>Dr. Vance (Cardiology)</strong> 14:02:11<br />Granted
+                EHR access for Patient #9012.
+                <span class="chip ok">✔ 2FA passed</span></span
+              >
+            </li>
+            <li>
+              <span
+                ><strong>Failed root elevation</strong> 13:58:44<br />Unknown IP
+                requested DB configuration export.
+                <span class="chip bad">⚠ Quarantine triggered</span></span
+              >
+            </li>
+            <li>
+              <span
+                ><strong>Nurse Rostova</strong> 13:45:00<br />Updated IV bolus
+                in MAR ledger for Ward 4.</span
+              >
+            </li>
+            <li>
+              <span
+                ><strong>Julian Chen (Admin)</strong> 13:12:18<br />Rotated SSL
+                certificates on primary API gateway.</span
+              >
+            </li>
+          </ul>
+          <a href="#">Inspect full SIEM log pipeline</a>
+        </section>
+      </div>
+    </div>
+    <script src="js/layout.js"></script>
+    <script>
+      const S = [
+        [
+          "Dr. Marcus Vance",
+          "MED-89104",
+          "Doctor",
+          "Cardiology",
+          "2 mins ago",
+          "Level 3 (Rx Full)",
+          1,
+        ],
+        [
+          "Elena Rostova",
+          "NUR-44192",
+          "Nurse",
+          "Emergency & Trauma",
+          "Just now",
+          "Level 2 (Vitals/Meds)",
+          1,
+        ],
+        [
+          "Julian Chen",
+          "ADM-00412",
+          "Admin",
+          "Administration",
+          "14 mins ago",
+          "Super Admin (Root)",
+          1,
+        ],
+        [
+          "David Becker",
+          "PAT-10928",
+          "Patient",
+          "Outpatient Services",
+          "1 hour ago",
+          "Level 0 (Portal only)",
+          1,
+        ],
+        [
+          "Amina Kasem",
+          "NUR-99120",
+          "Nurse",
+          "Neurology ICU",
+          "3 days ago",
+          "Revoked",
+          0,
+        ],
+      ];
+      document.getElementById("tb").innerHTML = S.map(
+        ([n, id, r, d, l, a, on]) =>
+          '<tr><th scope="row" style="font-size:1rem;color:inherit">' +
+          n +
+          '<br><span class="muted">' +
+          id +
+          '</span></th><td><span class="chip info">' +
+          r +
+          "</span></td><td>" +
+          d +
+          "</td><td>" +
+          l +
+          "</td><td>" +
+          a +
+          '</td><td><button role="switch" aria-checked="' +
+          (on ? "true" : "false") +
+          '" class="btn sec sm" aria-label="Account status for ' +
+          n +
+          '">' +
+          (on ? "✔ Active" : "✖ Revoked") +
+          "</button></td></tr>",
+      ).join("");
+      document.getElementById("tb").onclick = (e) => {
+        const b = e.target.closest("[role=switch]");
+        if (!b) return;
+        const o = b.getAttribute("aria-checked") === "true";
+        b.setAttribute("aria-checked", !o);
+        b.textContent = o ? "✖ Revoked" : "✔ Active";
+      };
+    </script>
+  </body>
+</html>

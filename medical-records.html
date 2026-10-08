@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Medical records – CarePoint</title>
+  </head>
+  <body>
+    <div class="shell" id="shell">
+      <div
+        class="banner ok"
+        style="
+          background: #eef3f8;
+          border-color: var(--soft);
+          color: var(--navy);
+        "
+      >
+        🔒
+        <div>
+          <strong>Confidential medical records</strong> · Protected by HIPAA
+          Privacy Rule · MRN #CP-00421<br /><span class="muted"
+            >Access is monitored under Title 45 CFR §164.312(b). Authorized
+            clinical personnel only.</span
+          >
+        </div>
+        <span style="margin-left: auto"
+          ><button class="btn sec sm">Access audit log</button>
+          <button class="btn sm">Export complete EMR (PDF)</button></span
+        >
+      </div>
+      <section class="card grid g2" aria-label="Patient summary">
+        <div>
+          <span class="patient-avatar" aria-hidden="true"></span>
+          <h1>Sarah Silva <span class="chip">38 yrs · DOB 11/14/1986</span></h1>
+          <p>Female · Blood type: O+</p>
+          <p>Emergency: David Jenkins (Spouse) · 555-0102</p>
+          <p>Attending: Dr. Marcus Chen, MD</p>
+        </div>
+        <div class="banner bad" role="note" style="margin: 0; display: block">
+          <strong>⚠ Documented allergies</strong> (2 verified)<br /><span
+            class="chip bad"
+            >✱ Penicillin – SEVERE / ANAPHYLAXIS</span
+          ><br /><span class="chip warn">△ Latex – MILD / CONTACT</span>
+        </div>
+      </section>
+      <div class="tabs" role="tablist" aria-label="Record sections" id="tl">
+        <button
+          role="tab"
+          id="t0"
+          aria-controls="p0"
+          aria-selected="false"
+          tabindex="-1"
+        >
+          Medical history
+        </button>
+        <button role="tab" id="t1" aria-controls="p1" aria-selected="true">
+          Lab &amp; diagnostic reports (6)
+        </button>
+        <button
+          role="tab"
+          id="t2"
+          aria-controls="p2"
+          aria-selected="false"
+          tabindex="-1"
+        >
+          Prescriptions &amp; medications
+        </button>
+        <button
+          role="tab"
+          id="t3"
+          aria-controls="p3"
+          aria-selected="false"
+          tabindex="-1"
+        >
+          Clinical visit notes
+        </button>
+      </div>
+      <div role="tabpanel" id="p0" aria-labelledby="t0" hidden class="card">
+        <p>
+          Hypertension (2019) · Hyperlipidemia (2021) · Appendectomy (2012).
+        </p>
+      </div>
+      <div role="tabpanel" id="p1" aria-labelledby="t1">
+        <section class="card">
+          <div class="tw">
+            <table>
+              <caption class="sr">
+                Laboratory reports
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Test / panel</th>
+                  <th scope="col">Date ordered</th>
+                  <th scope="col">Ordering physician</th>
+                  <th scope="col">Result status</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <strong>Comprehensive Metabolic Panel (CMP)</strong>
+                    <span class="chip info">Active view</span><br /><span
+                      class="muted"
+                      >LOINC 24323-8 · Venipuncture serum</span
+                    >
+                  </td>
+                  <td>Oct 24, 2024</td>
+                  <td>Dr. Marcus Chen, MD</td>
+                  <td>
+                    <span class="chip bad">⚠ Elevated – requires review</span>
+                  </td>
+                  <td>
+                    <button class="btn sec sm" aria-label="View CMP">👁</button>
+                    <button class="btn sec sm" aria-label="Download CMP">
+                      ⬇
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong
+                      >Complete Blood Count (CBC) with Differential</strong
+                    >
+                  </td>
+                  <td>Oct 24, 2024</td>
+                  <td>Dr. Marcus Chen, MD</td>
+                  <td><span class="chip ok">✔ Normal</span></td>
+                  <td>
+                    <button class="btn sec sm" aria-label="View CBC">👁</button>
+                    <button class="btn sec sm" aria-label="Download CBC">
+                      ⬇
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Lipid Panel with Non-HDL Ratio</strong></td>
+                  <td>Sep 12, 2024</td>
+                  <td>Dr. Marcus Chen, MD</td>
+                  <td><span class="chip ok">✔ Normal</span></td>
+                  <td>
+                    <button class="btn sec sm" aria-label="View Lipid Panel">
+                      👁
+                    </button>
+                    <button
+                      class="btn sec sm"
+                      aria-label="Download Lipid Panel"
+                    >
+                      ⬇
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong
+                      >Thyroid Stimulating Hormone (TSH) Reflex w/ Free
+                      T4</strong
+                    >
+                  </td>
+                  <td>Oct 24, 2024</td>
+                  <td>Dr. Sarah Jenkins</td>
+                  <td><span class="chip warn">⏳ Pending lab</span></td>
+                  <td>—</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section class="card" aria-labelledby="df">
+          <h2 id="df">
+            Detailed findings: Comprehensive Metabolic Panel (CMP)
+            <span class="chip bad">⚠ Flagged alert</span>
+          </h2>
+          <p class="muted">
+            Specimen ID #SMP-991204 · Collected 2024-10-24 08:24 EST
+          </p>
+          <p>
+            <button class="btn sec sm">Print specimen slip</button>
+            <button class="btn sm">Download PDF report</button>
+          </p>
+          <div class="tw">
+            <table>
+              <caption class="sr">
+                Quantitative analyte breakdown
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Analyte</th>
+                  <th scope="col">Result</th>
+                  <th scope="col">Reference interval</th>
+                  <th scope="col">Range</th>
+                  <th scope="col">Flag</th>
+                </tr>
+              </thead>
+              <tbody id="an"></tbody>
+            </table>
+          </div>
+        </section>
+        <section class="card grid g2">
+          <div>
+            <h2>Attending physician clinical notes</h2>
+            <p>
+              Elevated fasting blood glucose (<span
+                style="color: var(--red); font-weight: 700"
+                >142 mg/dL</span
+              >) is consistent with impaired glycoregulation; patient reported
+              mild postprandial fatigue over the past 4 weeks. Renal function is
+              robust with preserved clearance. Borderline hyponatremia (133
+              mmol/L) likely secondary to increased fluid intake prior to draw.
+            </p>
+            <p
+              class="banner ok"
+              style="
+                background: #eef3f8;
+                border-color: var(--soft);
+                color: var(--navy);
+              "
+            >
+              <strong>Immediate recommendation:</strong> Schedule confirmatory
+              Glycated Hemoglobin (HbA1c) alongside 14-day continuous glucose
+              monitoring.
+            </p>
+          </div>
+          <div>
+            <h3>Signing provider</h3>
+            <p>
+              Dr. Marcus Chen, MD<br /><span class="chip ok"
+                >✔ Cryptographically verified</span
+              >
+            </p>
+            <div id="clin">
+              <button class="btn full" id="so">
+                Acknowledge &amp; sign off
+              </button>
+              <p></p>
+              <button class="btn sec full">
+                Order add-on diagnostic (HbA1c)
+              </button>
+            </div>
+            <p class="help" id="roMsg" hidden>
+              Read-only view: clinical sign-off controls are available to
+              doctors and nurses.
+            </p>
+          </div>
+        </section>
+      </div>
+      <div role="tabpanel" id="p2" aria-labelledby="t2" hidden class="card">
+        <ul class="list">
+          <li>Atorvastatin 20 mg · 1 daily at bedtime</li>
+          <li>Lisinopril 10 mg · 1 daily in morning</li>
+          <li>Amoxicillin 500 mg · Day 4 of 10</li>
+        </ul>
+      </div>
+      <div role="tabpanel" id="p3" aria-labelledby="t3" hidden class="card">
+        <p>
+          Oct 24, 2024 – Dr. Marcus Chen: Follow-up on fatigue; labs ordered.
+        </p>
+      </div>
+    </div>
+    <script src="js/layout.js"></script>
+    <script>
+      const A = [
+        [
+          "Glucose, Serum",
+          "142 mg/dL",
+          "70 – 99 mg/dL (fasting)",
+          90,
+          "bad",
+          "⬆ HIGH (flagged)",
+        ],
+        [
+          "Creatinine, Serum",
+          "0.88 mg/dL",
+          "0.59 – 1.04 mg/dL",
+          50,
+          "ok",
+          "✔ NORMAL",
+        ],
+        [
+          "eGFR (CKD-EPI 2021)",
+          "98 mL/min/1.73m²",
+          "≥ 60 mL/min/1.73m²",
+          75,
+          "ok",
+          "✔ NORMAL",
+        ],
+        [
+          "Sodium, Serum",
+          "133 mmol/L",
+          "135 – 145 mmol/L",
+          15,
+          "warn",
+          "⬇ LOW (borderline)",
+        ],
+      ];
+      document.getElementById("an").innerHTML = A.map(
+        (a) =>
+          '<tr><th scope="row" style="font-size:1rem;color:inherit">' +
+          a[0] +
+          "</th><td><strong>" +
+          a[1] +
+          "</strong></td><td>" +
+          a[2] +
+          '</td><td><div class="rng" aria-hidden="true"><i style="left:' +
+          a[3] +
+          '%"></i></div></td><td><span class="chip ' +
+          a[4] +
+          '">' +
+          a[5] +
+          "</span></td></tr>",
+      ).join("");
+      const tabs = [...document.querySelectorAll("[role=tab]")];
+      function sel(i) {
+        tabs.forEach((t, j) => {
+          t.setAttribute("aria-selected", i === j);
+          t.tabIndex = i === j ? 0 : -1;
+          document.getElementById(t.getAttribute("aria-controls")).hidden =
+            i !== j;
+        });
+        tabs[i].focus();
+      }
+      tabs.forEach((t, i) => {
+        t.onclick = () => sel(i);
+        t.onkeydown = (e) => {
+          if (e.key === "ArrowRight") sel((i + 1) % 4);
+          if (e.key === "ArrowLeft") sel((i + 3) % 4);
+          if (e.key === "Home") sel(0);
+          if (e.key === "End") sel(3);
+        };
+      });
+      if (location.hash === "#rx") sel(2);
+      const role = sessionStorage.getItem("role") || "patient";
+      if (role === "patient") {
+        document.getElementById("clin").hidden = true;
+        document.getElementById("roMsg").hidden = false;
+      }
+      document.getElementById("so").onclick = function () {
+        this.textContent = "✔ Signed off";
+        this.disabled = true;
+      };
+    </script>
+  </body>
+</html>

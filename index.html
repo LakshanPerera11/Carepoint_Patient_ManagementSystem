@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Sign in – CarePoint</title>
+  </head>
+  <body>
+    <div class="login">
+      <div class="l">
+        <div class="brand login-brand">
+          <span class="logo" aria-hidden="true">+</span
+          ><span>CarePoint<small>HEALTH SYSTEMS NETWORK</small></span>
+        </div>
+        <h1>Welcome to your health portal.</h1>
+        <p class="muted">
+          Log in to manage appointments, access lab results, and message your
+          care team in one secure place.
+        </p>
+        <div class="card">
+          <h2>🛡 Private &amp; secure health records</h2>
+          <p class="muted">
+            All medical information is strictly protected and HIPAA certified.
+          </p>
+        </div>
+        <div class="card">
+          <h2>📅 Easy online appointments</h2>
+          <p class="muted">
+            Schedule visits and consult specialists in a few clicks.
+          </p>
+        </div>
+        <div class="card">
+          <h2>💬 24/7 care team access</h2>
+          <p class="muted">
+            Prescription renewals and prompt clinical support around the clock.
+          </p>
+        </div>
+        <figure class="login-hero">
+          <img
+            src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1000&q=80"
+            alt="Clinicians working in a modern hospital"
+          />
+          <figcaption>
+            CLINICAL NODE 08 · METRO GENERAL CAMPUS<br /><strong
+              >Real-time vitals, diagnostic archiving &amp; immediate triage
+              paging.</strong
+            >
+          </figcaption>
+        </figure>
+      </div>
+      <div>
+        <form class="card" id="f" novalidate aria-labelledby="t">
+          <h1 id="t">Sign In</h1>
+          <p class="muted">Select your portal access profile to continue</p>
+          <div id="err" class="banner bad" role="alert" hidden></div>
+          <fieldset style="border: 0; padding: 0; margin: 0">
+            <legend class="muted">Portal access role</legend>
+            <div class="roles">
+              <input
+                type="radio"
+                name="role"
+                id="r1"
+                value="patient"
+                checked
+              /><label for="r1">👤 Patient</label>
+              <input type="radio" name="role" id="r2" value="doctor" /><label
+                for="r2"
+                >🩺 Doctor</label
+              >
+              <input type="radio" name="role" id="r3" value="nurse" /><label
+                for="r3"
+                >➕ Nurse</label
+              >
+              <input type="radio" name="role" id="r4" value="admin" /><label
+                for="r4"
+                >⚙ Admin</label
+              >
+            </div>
+          </fieldset>
+          <label for="u">Medical ID or Email</label
+          ><input
+            id="u"
+            type="text"
+            autocomplete="username"
+            placeholder="name@carepoint-health.org"
+            aria-describedby="uh"
+            required
+          />
+          <p class="help" id="uh">
+            e.g. MRN or user@hospital.org. Authorized personnel and registered
+            patients only.
+          </p>
+          <label for="p">Credential Secret / Password</label>
+          <div class="pw">
+            <input
+              id="p"
+              type="password"
+              autocomplete="current-password"
+              required
+            /><button type="button" id="tg" aria-label="Show password">
+              👁
+            </button>
+          </div>
+          <p class="help"><a href="#">Forgot password?</a></p>
+          <label
+            style="
+              font-weight: 400;
+              display: flex;
+              gap: 0.5rem;
+              align-items: center;
+            "
+            ><input type="checkbox" style="width: auto" /> Trust this terminal
+            for 12 hours</label
+          >
+          <button class="btn full" style="margin-top: 1rem">
+            Sign in to portal
+          </button>
+          <p class="card muted" style="margin: 1rem 0 0; text-align: center">
+            First time visiting CarePoint?
+            <a href="#">Register as new patient</a>
+          </p>
+        </form>
+      </div>
+    </div>
+    <script>
+      const f = document.getElementById("f"),
+        u = document.getElementById("u"),
+        p = document.getElementById("p"),
+        e = document.getElementById("err");
+      document.getElementById("tg").onclick = function () {
+        const s = p.type === "password";
+        p.type = s ? "text" : "password";
+        this.setAttribute("aria-label", s ? "Hide password" : "Show password");
+      };
+      f.onsubmit = (ev) => {
+        ev.preventDefault();
+        const v = u.value.trim(),
+          m = [];
+        [u, p].forEach((x) => x.removeAttribute("aria-invalid"));
+        if (!v) {
+          m.push("Enter your Medical ID or email.");
+          u.setAttribute("aria-invalid", "true");
+        } else if (v.includes("@") && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) {
+          m.push("Enter a valid email address.");
+          u.setAttribute("aria-invalid", "true");
+        }
+        if (!p.value) {
+          m.push("Enter your password.");
+          p.setAttribute("aria-invalid", "true");
+        }
+        if (m.length) {
+          e.hidden = false;
+          e.innerHTML = "⚠ " + m.join(" ");
+          f.querySelector("[aria-invalid]").focus();
+          return;
+        }
+        const r = f.role.value;
+        sessionStorage.setItem("role", r);
+        location.href =
+          r === "admin" ? "admin-dashboard.html" : "patient-dashboard.html";
+      };
+    </script>
+  </body>
+</html>

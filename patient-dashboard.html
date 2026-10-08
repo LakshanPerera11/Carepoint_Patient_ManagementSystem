@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Patient Dashboard – CarePoint</title>
+  </head>
+  <body>
+    <div class="shell" id="shell">
+      <div class="banner ok" role="status">
+        ✔
+        <div>
+          <strong>Confirmed booking</strong><br />Your appointment on May 12 has
+          been confirmed. Ref: #BK-00412
+        </div>
+      </div>
+      <div
+        class="card"
+        style="
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 1rem;
+          align-items: center;
+        "
+      >
+        <div>
+          <p class="muted">Clinical patient portal · MRN: #CP-00421</p>
+          <h1>Good morning, Sarah Silva</h1>
+          <p class="muted">
+            Your consolidated treatment overview, verified records and care plan
+            timeline.
+          </p>
+        </div>
+        <div>
+          <p class="chip bad">✱ 24/7 Nurse Triage 1-800-555-CARE</p>
+          <br /><a class="btn" href="appointment-booking.html"
+            >+ Book New Appointment</a
+          >
+        </div>
+      </div>
+      <h2 class="sr">Summary</h2>
+      <div class="grid g4">
+        <div class="card">
+          <p class="muted">Scheduled care</p>
+          <p class="big">2</p>
+          <p>Upcoming appointments</p>
+        </div>
+        <div class="card">
+          <p class="muted">Medication therapy</p>
+          <p class="big">3</p>
+          <p>Active prescriptions</p>
+        </div>
+        <div class="card">
+          <p class="muted">
+            Diagnostic orders <span class="chip bad">UNREAD</span>
+          </p>
+          <p class="big">1</p>
+          <p>New lab result</p>
+        </div>
+        <div class="card">
+          <p class="muted">Statements &amp; co-pay</p>
+          <p class="big">Rs.145.00</p>
+          <p>Pending invoice, due May 28, 2025</p>
+        </div>
+      </div>
+      <div class="grid g2">
+        <div>
+          <section class="card" aria-labelledby="nv">
+            <h2 id="nv">
+              Next confirmed visit
+              <span class="chip ok">✔ Confirmed &amp; Verified</span>
+            </h2>
+            <p>
+              <span class="doctor-avatar" aria-hidden="true"></span
+              ><strong>Dr. Marcus Vance, MD</strong> – Cardiology, Adult Heart
+              Center · Pavilion West, Floor 3, Room 304B
+            </p>
+            <p><strong>May 14, 2025, 10:30 AM</strong></p>
+            <p class="muted">
+              Arrival check-in opens 20 minutes prior. Please bring photo ID.
+            </p>
+            <p>
+              <button class="btn sec sm">Directions</button>
+              <a class="btn sec sm" href="appointment-booking.html"
+                >Reschedule</a
+              >
+              <button class="btn sm">Check in online</button>
+            </p>
+          </section>
+          <section class="card" aria-labelledby="rx">
+            <h2 id="rx">Active prescriptions &amp; refills</h2>
+            <ul class="list">
+              <li>
+                <span
+                  ><strong>Atorvastatin Calcium</strong><br /><span
+                    class="muted"
+                    >20 mg · 1 daily at bedtime · 2 refills available</span
+                  ></span
+                ><button class="btn sm" aria-label="Refill Atorvastatin">
+                  Refill
+                </button>
+              </li>
+              <li>
+                <span
+                  ><strong>Lisinopril</strong><br /><span class="muted"
+                    >10 mg · 1 daily in morning · 3 refills available</span
+                  ></span
+                ><button class="btn sm" aria-label="Refill Lisinopril">
+                  Refill
+                </button>
+              </li>
+              <li>
+                <span
+                  ><strong>Amoxicillin Trihydrate</strong><br /><span
+                    class="muted"
+                    >500 mg · Day 4 of 10</span
+                  ></span
+                ><span class="chip info">Active course</span>
+              </li>
+            </ul>
+          </section>
+          <section class="card" aria-labelledby="lb">
+            <h2 id="lb">Recent lab &amp; test results</h2>
+            <ul class="list">
+              <li>
+                <span
+                  ><strong>Comprehensive Blood Chemistry</strong><br /><span
+                    class="muted"
+                    >Completed May 08, 2025</span
+                  >
+                  <span class="chip ok">✔ Normal range</span></span
+                ><a href="medical-records.html">View details</a>
+              </li>
+              <li>
+                <span
+                  ><strong>Lipid Profile &amp; Apolipoprotein</strong
+                  ><br /><span class="muted"
+                    >Completed Apr 22, 2025 · Reviewed by Dr. Vance</span
+                  ></span
+                ><a href="medical-records.html">View details</a>
+              </li>
+              <li>
+                <span
+                  ><strong>Resting 12-Lead Electrocardiogram</strong><br /><span
+                    class="muted"
+                    >Completed Mar 14, 2025</span
+                  >
+                  <span class="chip ok">✔ Sinus rhythm · Normal</span></span
+                ><a href="medical-records.html">View details</a>
+              </li>
+            </ul>
+          </section>
+        </div>
+        <div>
+          <section class="card" aria-labelledby="vt">
+            <h2 id="vt">Latest vitals summary</h2>
+            <p class="muted">Recorded May 09</p>
+            <p>
+              Blood pressure <strong>118/76 mmHg</strong>
+              <span class="chip ok">Optimal range</span>
+            </p>
+            <p>
+              Resting heart rate <strong>68 BPM</strong>
+              <span class="chip ok">Normal rhythm</span>
+            </p>
+            <p>
+              Oxygen saturation <strong>99% SpO₂</strong>
+              <span class="chip ok">Room air</span>
+            </p>
+            <p>
+              Body temp <strong>98.4 °F</strong>
+              <span class="chip ok">Oral route</span>
+            </p>
+          </section>
+          <section class="card" aria-labelledby="al">
+            <h2 id="al">
+              Alerts &amp; care notices <span class="chip">3 total</span>
+            </h2>
+            <ul class="list">
+              <li>
+                🔴
+                <span
+                  ><strong>Lab report available</strong> (2h ago)<br />Your
+                  blood chemistry panel is ready for review in your records
+                  tab.</span
+                >
+              </li>
+              <li>
+                🔵
+                <span
+                  ><strong>Appointment confirmed</strong> (Yesterday)<br />Dr.
+                  Vance's office accepted your cardiology consultation.</span
+                >
+              </li>
+              <li>
+                🟠
+                <span
+                  ><strong>Fasting preparation note</strong><br />Please observe
+                  an 8-hour fast before your lipid panel tests.</span
+                >
+              </li>
+            </ul>
+            <button class="btn sec full">Mark all as read</button>
+          </section>
+        </div>
+      </div>
+    </div>
+    <script src="js/layout.js"></script>
+  </body>
+</html>

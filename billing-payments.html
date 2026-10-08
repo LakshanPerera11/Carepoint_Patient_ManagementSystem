@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Billing & payments – CarePoint</title>
+  </head>
+  <body>
+    <div class="shell" id="shell">
+      <div
+        class="card"
+        style="display: flex; justify-content: space-between; flex-wrap: wrap"
+      >
+        <div>
+          <h1>Billing &amp; payments – secure checkout</h1>
+          <p class="muted">
+            Complete your co-pay or outstanding balance using encrypted
+            hospital-grade processing.
+          </p>
+        </div>
+        <div>
+          <span class="chip ok">🔒 256-bit SSL encrypted</span><br /><span
+            class="chip info"
+            >Billing support: (800) 555-CARE</span
+          >
+        </div>
+      </div>
+      <div id="sum" class="banner bad" role="alert" tabindex="-1" hidden>
+        <div>
+          <strong
+            >⚠ There was <span id="n">1</span> issue with your payment
+            submission</strong
+          ><br />Please correct the highlighted fields before finalizing your
+          transaction.
+          <ul id="sl" style="margin: 0.3rem 0 0"></ul>
+        </div>
+      </div>
+      <div id="done" class="banner ok" role="status" tabindex="-1" hidden>
+        ✔
+        <div>
+          <strong>Payment successful.</strong> Rs. 145.00 paid for Invoice
+          #INV-2025-0841. A receipt has been sent to your email.
+        </div>
+      </div>
+      <div class="grid g2">
+        <section class="card" aria-labelledby="so">
+          <p class="muted">
+            Statement overview <span class="chip info">Ready to pay</span>
+          </p>
+          <h2 id="so">Invoice #INV-2025-0841</h2>
+          <p class="big">Rs. 145.00</p>
+          <p class="muted">Outstanding balance · Due by May 28, 2025</p>
+          <table>
+            <caption class="sr">
+              Itemized breakdown
+            </caption>
+            <tr>
+              <td>Cardiology consultation fee</td>
+              <td>Rs. 120.00</td>
+            </tr>
+            <tr>
+              <td>Lab diagnostics &amp; blood panel</td>
+              <td>Rs. 75.00</td>
+            </tr>
+            <tr>
+              <td>Insurance covered (BlueCross PPO)</td>
+              <td style="color: var(--green)">− Rs. 50.00</td>
+            </tr>
+            <tr>
+              <th scope="row" style="color: inherit">Patient responsibility</th>
+              <td><strong>Rs. 145.00</strong></td>
+            </tr>
+          </table>
+          <p class="help">
+            ✔ Eligible for HSA/FSA reimbursement. An itemized receipt will be
+            emailed.
+          </p>
+          <p><a href="#">Receipt history – view past co-pays</a></p>
+        </section>
+        <section class="card" aria-labelledby="pm">
+          <h2 id="pm">Choose payment method</h2>
+          <p class="help">All transactions are tokenized.</p>
+          <div class="tabs" role="tablist" aria-label="Payment method">
+            <button role="tab" aria-selected="true">Credit card</button
+            ><button role="tab" aria-selected="false" tabindex="-1">
+              Apple / Google Pay</button
+            ><button role="tab" aria-selected="false" tabindex="-1">
+              Bank account
+            </button>
+          </div>
+          <form id="pf" novalidate>
+            <label for="nm"
+              >Cardholder name
+              <span aria-hidden="true" style="color: var(--red)">*</span></label
+            ><input
+              id="nm"
+              autocomplete="cc-name"
+              aria-required="true"
+              aria-describedby="nmh"
+              value="Eleanor R. Vance"
+            />
+            <p class="help" id="nmh">
+              Enter exact name as embossed on the front of the card.
+            </p>
+            <p class="err" id="nme"></p>
+            <label for="cn"
+              >Card number
+              <span aria-hidden="true" style="color: var(--red)">*</span></label
+            ><input
+              id="cn"
+              inputmode="numeric"
+              autocomplete="cc-number"
+              aria-required="true"
+              aria-describedby="cnh cne"
+              value="4532 0192 8471 001"
+            />
+            <p class="err" id="cne"></p>
+            <p class="help" id="cnh">Visa, MC, Amex, Discover.</p>
+            <div class="grid" style="grid-template-columns: 1fr 1fr">
+              <div>
+                <label for="ex"
+                  >Expiration date
+                  <span aria-hidden="true" style="color: var(--red)"
+                    >*</span
+                  ></label
+                ><input
+                  id="ex"
+                  autocomplete="cc-exp"
+                  placeholder="MM/YY"
+                  aria-required="true"
+                  aria-describedby="exh exe"
+                  value="09/27"
+                />
+                <p class="help" id="exh">Format: MM/YY</p>
+                <p class="err" id="exe"></p>
+              </div>
+              <div>
+                <label for="cv"
+                  >Security code (CVV)
+                  <span aria-hidden="true" style="color: var(--red)"
+                    >*</span
+                  ></label
+                ><input
+                  id="cv"
+                  inputmode="numeric"
+                  autocomplete="cc-csc"
+                  aria-required="true"
+                  aria-describedby="cvh cve"
+                  value="382"
+                />
+                <p class="help" id="cvh">3 digits (Visa/MC) or 4 (Amex)</p>
+                <p class="err" id="cve"></p>
+              </div>
+            </div>
+            <label
+              style="
+                font-weight: 400;
+                display: flex;
+                gap: 0.5rem;
+                align-items: center;
+              "
+              ><input type="checkbox" checked style="width: auto" /> Billing
+              address matches residential record (on file with CarePoint)</label
+            >
+            <button class="btn full" style="margin-top: 1rem" id="pay">
+              🔒 Pay Rs. 145.00 now
+            </button>
+            <p class="help">
+              Authorized payment agent. No hidden convenience fees.
+            </p>
+          </form>
+        </section>
+      </div>
+    </div>
+    <script src="js/layout.js"></script>
+    <script>
+      const g = (id) => document.getElementById(id),
+        F = {
+          cn: [
+            "cne",
+            "Card verification check failed. Please check the 16-digit card number.",
+            (v) => /^\d{16}$/.test(v.replace(/\s/g, "")),
+          ],
+          nm: ["nme", "Enter the cardholder name.", (v) => v.trim().length > 1],
+          ex: [
+            "exe",
+            "Enter a valid, unexpired date as MM/YY.",
+            (v) => {
+              const m = /^(0[1-9]|1[0-2])\/(\d\d)$/.exec(v);
+              if (!m) return false;
+              const d = new Date(2000 + +m[2], +m[1], 0, 23, 59);
+              return d > new Date();
+            },
+          ],
+          cv: [
+            "cve",
+            "Enter a 3 or 4 digit security code.",
+            (v) => /^\d{3,4}$/.test(v),
+          ],
+        };
+      g("cn").oninput = (e) => {
+        e.target.value = e.target.value
+          .replace(/\D/g, "")
+          .slice(0, 16)
+          .replace(/(.{4})/g, "$1 ")
+          .trim();
+      };
+      g("pf").onsubmit = (e) => {
+        e.preventDefault();
+        const bad = [];
+        g("done").hidden = true;
+        for (const k in F) {
+          const i = g(k),
+            ok = F[k][2](i.value);
+          g(F[k][0]).textContent = ok ? "" : "⚠ " + F[k][1];
+          ok
+            ? i.removeAttribute("aria-invalid")
+            : (i.setAttribute("aria-invalid", "true"), bad.push(k));
+        }
+        const s = g("sum");
+        if (bad.length) {
+          g("n").textContent = bad.length;
+          g("sl").innerHTML = bad
+            .map(
+              (k) =>
+                '<li><a href="#' +
+                k +
+                '">' +
+                document
+                  .querySelector("label[for=" + k + "]")
+                  .textContent.replace("*", "")
+                  .trim() +
+                " – " +
+                F[k][1] +
+                "</a></li>",
+            )
+            .join("");
+          s.hidden = false;
+          s.focus();
+        } else {
+          s.hidden = true;
+          g("done").hidden = false;
+          g("done").focus();
+          g("pay").disabled = true;
+        }
+      };
+      document.getElementById("sl").onclick = (e) => {
+        if (e.target.tagName === "A") {
+          e.preventDefault();
+          g(e.target.hash.slice(1)).focus();
+        }
+      };
+    </script>
+  </body>
+</html>
