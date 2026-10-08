@@ -45,6 +45,11 @@ h3 {
 a {
   color: var(--blue);
 }
+
+:where(a, button, input, textarea, select):focus-visible {
+  outline: 3px solid #f0a51a;
+  outline-offset: 2px;
+}
 p {
   margin: 0.25rem 0;
 }
